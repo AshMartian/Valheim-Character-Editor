@@ -2,7 +2,7 @@
 
 This repository is licensed under the GNU General Public License v3.0.
 
-![alt text](https://raw.githubusercontent.com/byt3m/Valheim-Character-Editor/main/ValheimCharacterEditor_v1.4.PNG)
+![alt text](https://raw.githubusercontent.com/byt3m/Valheim-Character-Editor/main/ValheimCharacterEditor_v1.3.PNG)
 
 This program creates a backup of your character data with each application. If you happen to lose your character or anything related to it, you can go to "C:\Users\\[username]\AppData\LocalLow\IronGate\Valheim\characters" and recover it.
 
@@ -20,12 +20,13 @@ Before editing a character, please make sure it is not a new character and that 
   5. Enjoy.
  
 # Known problems
-  - If your character appears naked, start the game, logout and then start the game again. This wont likely happen with the new parser.
+  - If your character appears naked, start the game, logout and then start the game again. This should resolve the problem.
+  - Sometimes a customization is not applied. You can fix it by closing Valheim and applying it again.
   - Steam sync seems to be causing problems when you change your character name. Disabling it is recommended.
-  - For some reason the game does not likes some customizations and may reset one or more of your skills. This wont likely happen with the new parser.
+  - For some reason the game does not likes some customizations and may reset one or more of your skills.
 
 # Whats coming next
+  - Add support on the name editor for names with spaces and special characters.
   - Edit hair color with a slider instead of predefined values.
   - Edit skin tones.
-  - Edit gender.
   - Possible inventory editor.

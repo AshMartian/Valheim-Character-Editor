@@ -11,6 +11,37 @@ namespace ValheimCharacterEditor
         static private string _LastBackup;
         static private string _BeforeLastBackup;
 
+        static public byte[] ReadFileBytes(String file)
+        {
+            Byte[] bytes = File.ReadAllBytes(file);
+            Thread.Sleep(100);
+            return bytes;
+        }
+
+        static public void WriteFileBytes(String file, Byte[] data)
+        {
+            File.WriteAllBytes(file, data);
+            Thread.Sleep(100);
+        }
+
+        static public bool CompareByteArrays(byte[] array1, byte[] array2)
+        {
+            if (array1.Length != array2.Length)
+            {
+                return false;
+            }
+
+            for (int i = 0; i < array1.Length; i++)
+            {
+                if (array1[i] != array2[i])
+                {
+                    return false;
+                }
+            }
+
+            return true;
+        }
+
         static public bool isGameRunning()
         {
             Process[] process = Process.GetProcessesByName("valheim");
@@ -74,6 +105,52 @@ namespace ValheimCharacterEditor
             }            
         }
 
+        static public int FindInBytes (byte[] byte_array, byte[] toSearch, int Start = 0)
+        {
+            int index = 0;
+            for (int p = Start; p < byte_array.Length; p++)
+            {
+                if (byte_array[p] == toSearch[index])
+                {
+                    index++;
+                }
+                else
+                {
+                    index = 0;
+                }
+
+                if (index == toSearch.Length)
+                {
+                    return p - toSearch.Length;
+                }
+            }
+
+            return 0;
+        }
+
+        static public int FindInBytesReverse(byte[] byte_array, byte[] toSearch)
+        {
+            int index = toSearch.Length - 1;
+            for (int p = byte_array.Length-1; p >= 0; p--)
+            {
+                if (byte_array[p] == toSearch[index])
+                {
+                    index--;
+                }
+                else
+                {
+                    index = toSearch.Length - 1;
+                }
+
+                if (index < 0)
+                {
+                    return p;
+                }
+            }
+
+            return 0;
+        }
+
         static public int FindInArrayString(String[] array, String toSearch)
         {
             for (int i = 0; i < array.Length; i++)
@@ -87,16 +164,26 @@ namespace ValheimCharacterEditor
             return 0;
         }
 
-        static public String[] GetCharactersNames(Customization.Character[] Characters)
+        static public byte[] ReadBytesArray(byte[] array, int index, int length)
         {
-            String[] names = new string[Characters.Length];
+            byte[] result = new byte[length];
 
-            for (int i = 0; i < Characters.Length; i++)
+            for (int i = 0; i < length; i++)
             {
-                names[i] = Characters[i].Data.Name;
+                result[i] = array[index + i];
             }
 
-            return names;
+            return result;
+        }
+
+        static public byte[] WriteBytesArray(byte[] array, int array_index, byte[] data, int data_index, int length)
+        {
+            for (int i = 0; i < length; i++)
+            {
+                array[array_index + i] = data[data_index + i];
+            }
+
+            return array;
         }
     }
 }
